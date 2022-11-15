@@ -3,6 +3,7 @@ import store from '../../redux/store'
 import {
     createIncrementAction,
     createDecrementAction,
+    createIncrementAsyncAction,
 } from '../../redux/count_action'
 
 export default class index extends Component {
@@ -23,9 +24,7 @@ export default class index extends Component {
     }
     incrementAsync = () => {
         const { value } = this.selectNumber
-        setTimeout(() => {
-            store.dispatch(createIncrementAction(value * 1))
-        }, 500)
+        store.dispatch(createIncrementAsyncAction(value * 1, 500))
     }
 
     render() {
