@@ -4,7 +4,7 @@ import {
     createIncrementAction,
     createDecrementAction,
     createIncrementAsyncAction,
-} from '../../redux/actions/count'
+} from '../../redux/count_action'
 
 class Count extends Component {
     increment = () => {
@@ -29,11 +29,7 @@ class Count extends Component {
     render() {
         return (
             <div>
-                <h2>
-                    我是Count组件,下方组件总人数为:
-                    {this.props.renshu}
-                </h2>
-                <h4>当前求和为:{this.props.count}</h4>
+                <h1>当前求和为:{this.props.count}</h1>
                 <select ref={(c) => (this.selectNumber = c)}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
@@ -53,7 +49,13 @@ class Count extends Component {
 }
 
 export default connect(
-    (state) => ({ count: state.he, renshu: state.rens.length }),
+    (state) => ({ count: state }),
+    // (dispatch) => ({
+    //     jia: (number) => dispatch(createIncrementAction(number)),
+    //     jian: (number) => dispatch(createDecrementAction(number)),
+    //     jianAsync: (number, time) =>
+    //         dispatch(createIncrementAsyncAction(number, time)),
+    // })
     {
         jia: createIncrementAction,
         jian: createDecrementAction,

@@ -1,0 +1,51 @@
+import React, { Component } from 'react'
+import { nanoid } from 'nanoid'
+import { connect } from 'react-redux'
+import { createAddPersonAction } from '../../redux/actions/person'
+
+class Person extends Component {
+    addPerson = () => {
+        const name = this.nameNode.value
+        const age = this.ageNode.value * 1
+        console.log(name, age)
+        const peronObj = {
+            id: nanoid(),
+            name,
+            age,
+        }
+        this.props.jiaYiRen(peronObj)
+        this.nameNode.value = ''
+        this.ageNode.value = ''
+    }
+    render() {
+        return (
+            <div>
+                <h2>我是Person组件,上方组件求和为{this.props.he}</h2>
+                <input
+                    type='text'
+                    placeholder='输入名字'
+                    ref={(c) => (this.nameNode = c)}
+                />
+                <input
+                    type='text'
+                    placeholder='输入年龄'
+                    ref={(c) => (this.ageNode = c)}
+                />
+                <button onClick={this.addPerson}>添加</button>
+                <ul>
+                    {this.props.yiduiren.map((p) => {
+                        return (
+                            <li key={p.id}>
+                                {p.name}--{p.age}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+        )
+    }
+}
+
+export default connect((state) => ({ yiduiren: state.rens, he: state.he }), {
+    jiaYiRen: createAddPersonAction,
+})(Person)
