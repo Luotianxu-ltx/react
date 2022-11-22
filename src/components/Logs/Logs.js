@@ -1,4 +1,5 @@
 /* 日志的容器 */
+import Card from '../UI/Card'
 import LogItem from './LogItem/LogItem'
 import './Logs.css'
 
@@ -23,7 +24,7 @@ const Logs = () => {
     const logItemDate = LogsData.map((item, index) => (
         <LogItem {...item} key={index}></LogItem>
     ))
-    return <div className='logs'>{logItemDate}</div>
+    return <Card className='logs'>{logItemDate}</Card>
 }
 
 export default Logs
