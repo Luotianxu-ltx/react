@@ -1,28 +1,40 @@
 /*设置item的样式*/
-.item{
+.item {
     /*开启弹性盒*/
     display: flex;
     margin: 16px 0;
     padding: 6px;
-    background-color: #FCBF49;
+    background-color: #fcbf49;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 /*设置日志内容的样式*/
-.content{
+.content {
     flex: auto;
     text-align: center;
     font-weight: bold;
 }
 
 /*设置描述内容*/
-.desc{
+.desc {
     font-size: 16px;
-    color: #194B49;
+    color: #194b49;
 }
 
 /*设置学习时间*/
-.time{
-    color: #D62828;
+.time {
+    color: #d62828;
 }
 
+.delete {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: #d62828;
+    transform: rotate(360deg);
+    transition: 0.3s;
+}
