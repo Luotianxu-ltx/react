@@ -30,17 +30,15 @@ const App = () => {
         setLogsData([...LogsData, newLog])
     }
 
-    const delLogByIndex = (index) => {
+    const delLogById = (id) => {
         setLogsData((preState) => {
-            const newLogs = [...preState]
-            newLogs.splice(index, 1)
-            return newLogs
+            return preState.filter((item) => item.id !== id)
         })
     }
     return (
         <div className='app'>
             <LogsForm onSaveLog={saveLogHandler}></LogsForm>
-            <Logs LogsData={LogsData} onDelLog={delLogByIndex}></Logs>
+            <Logs LogsData={LogsData} onDelLog={delLogById}></Logs>
         </div>
     )
 }
