@@ -1,3 +1,4 @@
+import Counter from '../../UI/Counter/Counter'
 import classes from './Meal.module.css'
 
 const Meal = () => {
@@ -11,7 +12,7 @@ const Meal = () => {
                 <p className={classes.Desc}>2</p>
                 <div className={classes.PriceWrap}>
                     <span className={classes.Price}>12</span>
-                    <div>数量</div>
+                    <Counter></Counter>
                 </div>
             </div>
         </div>
