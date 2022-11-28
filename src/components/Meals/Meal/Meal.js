@@ -1,18 +1,22 @@
-import Counter from '../../UI/Counter/Counter'
+import React from 'react'
 import classes from './Meal.module.css'
+import Counter from '../../UI/Counter/Counter'
 
-const Meal = () => {
+/*
+ *   食物组件
+ * */
+const Meal = (props) => {
     return (
         <div className={classes.Meal}>
             <div className={classes.ImgBox}>
-                <img></img>
+                <img src={props.meal.img} alt={props.meal.title} />
             </div>
             <div>
-                <h2 className={classes.Title}>1</h2>
-                <p className={classes.Desc}>2</p>
+                <h2 className={classes.Title}>{props.meal.title}</h2>
+                <p className={classes.Desc}>{props.meal.desc}</p>
                 <div className={classes.PriceWrap}>
-                    <span className={classes.Price}>12</span>
-                    <Counter></Counter>
+                    <span className={classes.Price}>{props.meal.price}</span>
+                    <Counter meal={props.meal} />
                 </div>
             </div>
         </div>

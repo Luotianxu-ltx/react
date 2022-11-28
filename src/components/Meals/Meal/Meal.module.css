@@ -6,7 +6,7 @@
 }
 
 .ImgBox {
-    width: 260rem;
+    width: 280rem;
 }
 
 img {
@@ -15,14 +15,14 @@ img {
 
 .Title {
     font-weight: normal;
-    font-size: 18px;
+    font-size: 36rem;
     margin: 0;
 }
 
 .Desc {
     margin: 0;
     color: #bbb;
-    font-size: 12px;
+    font-size: 24rem;
     padding-right: 40rem;
 }
 
@@ -35,10 +35,10 @@ img {
 
 .Price {
     font-weight: bold;
-    font-weight: 18px;
+    font-size: 36rem;
 }
 
 .Price::before {
     content: '￥';
-    font-size: 12px;
+    font-size: 24rem;
 }
