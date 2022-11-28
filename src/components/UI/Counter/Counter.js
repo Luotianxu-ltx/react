@@ -1,7 +1,7 @@
 import classes from './Counter.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-import CarContext from '../../../store/carContext'
+import CarContext from '../../../store/cartContext'
 import { useContext } from 'react'
 
 const Counter = (props) => {

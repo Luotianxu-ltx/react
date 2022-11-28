@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import FilterMeals from './components/FilterMeals/FilterMeals'
 import Meals from './components/Meals/Meals'
-import CarContext from './store/carContext'
+import Cart from './components/Cart/Cart'
+import CarContext from './store/cartContext'
 
 const MEALS_DATA = [
     {
@@ -72,9 +73,8 @@ const App = () => {
         } else {
             meal.amount += 1
         }
-
         newCart.totalAmount += 1
-        newCart.totalPrice += newCart.price
+        newCart.totalPrice += meal.price
         setCarData(newCart)
     }
 
@@ -84,6 +84,8 @@ const App = () => {
         if (meal.amount === 0) {
             newCart.items.splice(newCart.items.indexOf(meal), 1)
         }
+        newCart.totalAmount -= 1
+        newCart.totalPrice -= meal.price
         setCarData(newCart)
     }
 
@@ -99,6 +101,7 @@ const App = () => {
             <div>
                 <FilterMeals onFilter={filterHandler}></FilterMeals>
                 <Meals mealsData={mealsData}></Meals>
+                <Cart></Cart>
             </div>
         </CarContext.Provider>
     )

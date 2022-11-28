@@ -1,4 +1,4 @@
-.Cart{
+.Cart {
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -10,19 +10,20 @@
     left: 0;
     right: 0;
     margin: auto;
+    z-index: 9999;
 }
 
-.Icon{
+.Icon {
     width: 80rem;
     position: absolute;
-    bottom:-6rem;
+    bottom: -6rem;
 }
 
-.Icon img{
+.Icon img {
     width: 100%;
 }
 
-.TotalAmount{
+.TotalAmount {
     position: absolute;
     width: 36rem;
     height: 36rem;
@@ -36,7 +37,8 @@
     right: -10rem;
 }
 
-.Price{
+.Price,
+.NoMeal {
     display: flex;
     align-items: center;
     margin-left: 120rem;
@@ -45,15 +47,24 @@
     font-size: 36rem;
 }
 
-.Price::before{
+.NoMeal {
+    color: #aaa;
+}
+
+.Price::before {
     content: '￥';
     font-size: 24rem;
 }
 
-.Button{
+.Button {
     border: none;
-    background-color: #FCBF49;
+    background-color: #fcbf49;
     width: 200rem;
     border-radius: 20px;
     font-size: 36rem;
+}
+
+.Disabled {
+    background-color: #777;
+    color: #ccc;
 }

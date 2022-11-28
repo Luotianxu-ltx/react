@@ -11,9 +11,11 @@ const Meal = (props) => {
             <div className={classes.ImgBox}>
                 <img src={props.meal.img} alt={props.meal.title} />
             </div>
-            <div>
+            <div className={classes.DescBox}>
                 <h2 className={classes.Title}>{props.meal.title}</h2>
-                <p className={classes.Desc}>{props.meal.desc}</p>
+                {props.noDesc ? null : (
+                    <p className={classes.Desc}>{props.meal.desc}</p>
+                )}
                 <div className={classes.PriceWrap}>
                     <span className={classes.Price}>{props.meal.price}</span>
                     <Counter meal={props.meal} />

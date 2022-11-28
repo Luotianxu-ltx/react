@@ -13,6 +13,10 @@ img {
     width: 100%;
 }
 
+.DescBox {
+    flex: auto;
+}
+
 .Title {
     font-weight: normal;
     font-size: 36rem;
