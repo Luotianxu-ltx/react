@@ -96,8 +96,19 @@ const App = () => {
         setMealsData(newMealsData)
     }
 
+    const clearCart = () => {
+        const newCart = { ...carData }
+        newCart.items.forEach((item) => delete item.amount)
+        newCart.items = []
+        newCart.totalAmount = 0
+        newCart.totalPrice = 0
+        setCarData(newCart)
+    }
+
     return (
-        <CarContext.Provider value={{ ...carData, addItem, removeItem }}>
+        <CarContext.Provider
+            value={{ ...carData, addItem, removeItem, clearCart }}
+        >
             <div>
                 <FilterMeals onFilter={filterHandler}></FilterMeals>
                 <Meals mealsData={mealsData}></Meals>
