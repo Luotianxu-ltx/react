@@ -7,10 +7,10 @@ import { useContext } from 'react'
 const Counter = (props) => {
     const ctx = useContext(CarContext)
     const addButtonHandler = () => {
-        ctx.addItem(props.meal)
+        ctx.cartDispatch({ type: 'ADD', meal: props.meal })
     }
     const subButtonHandler = () => {
-        ctx.removeItem(props.meal)
+        ctx.cartDispatch({ type: 'REMOVE', meal: props.meal })
     }
     return (
         <div className={classes.Counter}>

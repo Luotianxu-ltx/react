@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import FilterMeals from './components/FilterMeals/FilterMeals'
 import Meals from './components/Meals/Meals'
 import Cart from './components/Cart/Cart'
@@ -56,38 +56,46 @@ const MEALS_DATA = [
     },
 ]
 
+const cartReducer = (state, action) => {
+    const newCart = { ...state }
+    switch (action.type) {
+        default:
+            return state
+        case 'ADD':
+            if (newCart.items.indexOf(action.meal) === -1) {
+                newCart.items.push(action.meal)
+                action.meal.amount = 1
+            } else {
+                action.meal.amount += 1
+            }
+            newCart.totalAmount += 1
+            newCart.totalPrice += action.meal.price
+            return newCart
+        case 'REMOVE':
+            action.meal.amount -= 1
+            if (action.meal.amount === 0) {
+                newCart.items.splice(newCart.items.indexOf(action.meal), 1)
+            }
+            newCart.totalAmount -= 1
+            newCart.totalPrice -= action.meal.price
+            return newCart
+        case 'CLEAR':
+            newCart.items.forEach((item) => delete item.amount)
+            newCart.items = []
+            newCart.totalAmount = 0
+            newCart.totalPrice = 0
+            return newCart
+    }
+}
+
 const App = () => {
     const [mealsData, setMealsData] = useState(MEALS_DATA)
 
-    const [carData, setCarData] = useState({
+    const [cartData, cartDispatch] = useReducer(cartReducer, {
         items: [],
         totalAmount: 0,
         totalPrice: 0,
     })
-
-    const addItem = (meal) => {
-        const newCart = { ...carData }
-        if (newCart.items.indexOf(meal) === -1) {
-            newCart.items.push(meal)
-            meal.amount = 1
-        } else {
-            meal.amount += 1
-        }
-        newCart.totalAmount += 1
-        newCart.totalPrice += meal.price
-        setCarData(newCart)
-    }
-
-    const removeItem = (meal) => {
-        const newCart = { ...carData }
-        meal.amount -= 1
-        if (meal.amount === 0) {
-            newCart.items.splice(newCart.items.indexOf(meal), 1)
-        }
-        newCart.totalAmount -= 1
-        newCart.totalPrice -= meal.price
-        setCarData(newCart)
-    }
 
     const filterHandler = (keyword) => {
         const newMealsData = MEALS_DATA.filter(
@@ -96,19 +104,8 @@ const App = () => {
         setMealsData(newMealsData)
     }
 
-    const clearCart = () => {
-        const newCart = { ...carData }
-        newCart.items.forEach((item) => delete item.amount)
-        newCart.items = []
-        newCart.totalAmount = 0
-        newCart.totalPrice = 0
-        setCarData(newCart)
-    }
-
     return (
-        <CarContext.Provider
-            value={{ ...carData, addItem, removeItem, clearCart }}
-        >
+        <CarContext.Provider value={{ ...cartData, cartDispatch }}>
             <div>
                 <FilterMeals onFilter={filterHandler}></FilterMeals>
                 <Meals mealsData={mealsData}></Meals>
